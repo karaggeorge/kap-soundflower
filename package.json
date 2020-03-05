@@ -27,7 +27,7 @@
   ],
   "kapVersion": ">=3.2.0",
   "dependencies": {
-    "macos-audio-devices": "^1.2.1"
+    "macos-audio-devices": "^1.2.2"
   },
   "peerDependencies": {
     "electron": "*"

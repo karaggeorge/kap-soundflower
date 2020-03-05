@@ -53,10 +53,10 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
   const {use64Channel, volume, combineInputDevices, combineOutputDevices, includeSystemSounds} = config.store;
   const channel = use64Channel ? '64ch' : '2ch';
 
-  state.defaultInputDevice = getDefaultInputDevice().id;
-  state.defaultOutputDevice = getDefaultOutputDevice().id;
+  state.defaultInputDevice = (await getDefaultInputDevice()).id;
+  state.defaultOutputDevice = (await getDefaultOutputDevice()).id;
 
-  const devices = getAllDevices();
+  const devices = await getAllDevices();
   const soundflowerDevices = devices.filter(device => device.name.toLowerCase().includes('soundflower'));
   const soundflower = soundflowerDevices.find(device => device.name.toLowerCase().includes(channel)) || devices[0];
 
@@ -64,51 +64,53 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
   let outputDevice = soundflower;
 
   if (includeSystemSounds) {
-    state.defaultSystemDevice = getDefaultSystemDevice().id;
-    setDefaultSystemDevice(soundflower.id);
+    state.defaultSystemDevice = (await getDefaultSystemDevice()).id;
+    await setDefaultSystemDevice(soundflower.id);
   }
 
   if (apertureOptions.audioDeviceId && combineInputDevices) {
     try {
       const apertureDevice = devices.find(device => device.uid === apertureOptions.audioDeviceId);
-      inputDevice = createAggregateDevice('Kap Input Device', apertureDevice.id, [soundflower.id]);
+      inputDevice = await createAggregateDevice('Kap Input Device', apertureDevice.id, [soundflower.id]);
       state.inputAggregateDevice = inputDevice.id;
-    } catch { }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   if (combineOutputDevices) {
     try {
-      outputDevice = createAggregateDevice('Kap Output Device', state.defaultOutputDevice, [soundflower.id], {multiOutput: true});
+      outputDevice = await createAggregateDevice('Kap Output Device', state.defaultOutputDevice, [soundflower.id], {multiOutput: true});
       state.outputAggregateDevice = outputDevice.id;
-    } catch { }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  console.log(state);
-
   try {
-    setOutputDeviceVolume(soundflower.id, volume);
+    await setOutputDeviceVolume(soundflower.id, volume);
   } catch { }
 
-  setDefaultOutputDevice(outputDevice.id);
-  setDefaultInputDevice(inputDevice.id);
+  await setDefaultOutputDevice(outputDevice.id);
+  await setDefaultInputDevice(inputDevice.id);
 
   apertureOptions.audioDeviceId = inputDevice.uid;
 };
 
 const didStopRecording = async ({state}) => {
-  setDefaultInputDevice(state.defaultInputDevice);
-  setDefaultOutputDevice(state.defaultOutputDevice);
+  await setDefaultInputDevice(state.defaultInputDevice);
+  await setDefaultOutputDevice(state.defaultOutputDevice);
 
   if (state.defaultSystemDevice) {
-    setDefaultSystemDevice(state.defaultSystemDevice);
+    await setDefaultSystemDevice(state.defaultSystemDevice);
   }
 
   if (state.outputAggregateDevice) {
-    destroyAggregateDevice(state.outputAggregateDevice);
+    await destroyAggregateDevice(state.outputAggregateDevice);
   }
 
   if (state.inputAggregateDevice) {
-    destroyAggregateDevice(state.inputAggregateDevice);
+    await destroyAggregateDevice(state.inputAggregateDevice);
   }
 };
 
