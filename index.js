@@ -71,7 +71,7 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
   if (apertureOptions.audioDeviceId && combineInputDevices) {
     try {
       const apertureDevice = devices.find(device => device.uid === apertureOptions.audioDeviceId);
-      inputDevice = await createAggregateDevice('Kap Input Device', soundflower.id, [apertureDevice.id]);
+      inputDevice = await createAggregateDevice('Kap Input Device', apertureDevice.id, [soundflower.id]);
       state.inputAggregateDevice = inputDevice.id;
     } catch (error) {
       console.error(error);
