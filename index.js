@@ -87,9 +87,11 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
     }
   }
 
-  try {
-    await setOutputDeviceVolume(soundflower.id, volume);
-  } catch { }
+  if (soundflower.volume !== volume) {
+    try {
+      await setOutputDeviceVolume(soundflower.id, volume);
+    } catch {}
+  }
 
   await setDefaultOutputDevice(outputDevice.id);
   await setDefaultInputDevice(inputDevice.id);
