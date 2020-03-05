@@ -1,6 +1,6 @@
 {
   "name": "kap-soundflower",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Record the system audio using Soundflower",
   "license": "MIT",
   "repository": "karaggeorge/kap-soundflower",
