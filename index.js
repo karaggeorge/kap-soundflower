@@ -117,7 +117,7 @@ const didStopRecording = async ({state}) => {
 const openSoundflowerInstructions = () => shell.openExternal('https://github.com/mattingalls/Soundflower/releases');
 
 const checkSoundflower = () => {
-  const devices = getAllDevices();
+  const devices = getAllDevices.sync();
 
   if (devices.some(device => device.name.toLowerCase().includes('soundflower'))) {
     return true;
