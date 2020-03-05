@@ -1,0 +1,43 @@
+{
+  "name": "kap-soundflower",
+  "version": "1.0.0",
+  "description": "Record the system audio using Soundflower",
+  "license": "MIT",
+  "repository": "karaggeorge/kap-soundflower",
+  "author": {
+    "name": "George Karagkiaouris",
+    "email": "gkaragkiaouris2@gmail.com",
+    "url": "https://gkaragkiaouris.tech"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "kap-plugin",
+    "soundflower",
+    "system",
+    "audio",
+    "aggregate",
+    "multi",
+    "input",
+    "output"
+  ],
+  "kapVersion": ">=3.2.0",
+  "dependencies": {
+    "macos-audio-devices": "^1.2.1"
+  },
+  "peerDependencies": {
+    "electron": "*"
+  },
+  "devDependencies": {
+    "ava": "^2.3.0",
+    "kap-plugin-test": "^0.5.0",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "space": 2
+  }
+}
