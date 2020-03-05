@@ -71,7 +71,7 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
   if (apertureOptions.audioDeviceId && combineInputDevices) {
     try {
       const apertureDevice = devices.find(device => device.uid === apertureOptions.audioDeviceId);
-      inputDevice = await createAggregateDevice('Kap Input Device', apertureDevice.id, [soundflower.id]);
+      inputDevice = await createAggregateDevice('Kap Input Device', soundflower.id, [apertureDevice.id]);
       state.inputAggregateDevice = inputDevice.id;
     } catch (error) {
       console.error(error);
@@ -80,7 +80,7 @@ const willStartRecording = async ({state, apertureOptions, config}) => {
 
   if (combineOutputDevices) {
     try {
-      outputDevice = await createAggregateDevice('Kap Output Device', state.defaultOutputDevice, [soundflower.id], {multiOutput: true});
+      outputDevice = await createAggregateDevice('Kap Output Device', soundflower.id, [state.defaultOutputDevice], {multiOutput: true});
       state.outputAggregateDevice = outputDevice.id;
     } catch (error) {
       console.error(error);
