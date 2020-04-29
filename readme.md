@@ -2,21 +2,19 @@
 
 > [Kap](https://github.com/wulkano/kap) plugin - Record the system audio using Soundflower
 
-
 ## Install
 
 In the `Kap` menu, go to `Preferences…`, select the `Plugins` pane, find this plugin, and toggle it.
 
-
 ## Usage
 
-In the cropper or by right clicking the tray icon, click the `…` icon, then `Plugins` and make sure `Record system audio` is enabled.
+In the cropper or by right-clicking the tray icon, click the `…` icon, then `Plugins` and make sure `Record System Audio` is enabled.
 
 ## How it works
 
-This plugin utilizes Soundflower virtual devices. It directs the system audio to the Soundflower output and then uses the linked Soundflower input to record the audio. If the user also wants to hear the system audio while recording, the plugin creates an Multi-Output Device from the Soundflower output and the system's default output device. Additionally, if the user wants to record from a different input device in addition to system audio, the plugin will create an aggregate device from the Soundflower input device and the selected input device. After the recording is over, the plugin will restore everything to the original state, removing any aggregate devices it created in the process.
+This plugin utilizes Soundflower virtual devices. It directs the system audio to the Soundflower output and then uses the linked Soundflower input to record the audio. If the user also wants to hear the system audio while recording, the plugin creates a “Multi-Output Device” from the Soundflower output and the system's default output device. Additionally, if the user wants to record from a different input device in addition to system audio, the plugin will create an aggregate device from the Soundflower input device and the selected input device. After the recording is over, the plugin will restore everything to the original state, removing any aggregate devices it created in the process.
 
-Some other options include recording system audio effects, using the Soundflower 64 channel device and setting the volume of the audio
+Some other options include recording system audio effects, using the Soundflower 64 channel device, and setting the volume of the audio.
 
 ## Limitations
 
