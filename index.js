@@ -139,7 +139,7 @@ const checkSoundflower = () => {
 };
 
 const recordSystemAudio = {
-  title: 'Record system audio',
+  title: 'Record System Audio',
   willStartRecording,
   didStopRecording,
   willEnable: checkSoundflower,
