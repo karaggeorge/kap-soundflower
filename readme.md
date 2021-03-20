@@ -3,8 +3,8 @@
 > [Kap](https://github.com/wulkano/kap) plugin - Record the system audio using Soundflower
 
 ## Install
-
-In the `Kap` menu, go to `Preferences…`, select the `Plugins` pane, find this plugin, and toggle it.
+1. Download [lastest soundflower release](https://github.com/mattingalls/Soundflower/releases).
+2. In the `Kap` menu, go to `Preferences…`, select the `Plugins` pane, find this plugin, and toggle it.
 
 ## Usage
 
